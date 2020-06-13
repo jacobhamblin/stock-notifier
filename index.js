@@ -81,7 +81,7 @@ const checkStock = function () {
         } else if (product.find('.bin-stock-availability')) {
           console.log('Product not available.');
         } else {
-          console.log('Product is available! ' + title);
+          console.log(title + ' is available!');
           productNotification({'id': id, 'title': title, 'url': productURL});
         }
 
