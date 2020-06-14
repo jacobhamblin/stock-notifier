@@ -9,13 +9,20 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const twilio = require('twilio')(ACCOUNT_ID, AUTH_TOKEN);
 
+let lastTime;
+
 const productNotification = function (productInfo) {
-  const id = productInfo.id;
-  const title = productInfo.title;
-  const url = productInfo.url;
+  const curTime = new Date().getTime();
+  if (lastTime && curTime - lastTime < 10 * 6 * 1000) return;
+  lastTime = curTime;
+  let body = 'ping';
+  if (productInfo) {
+    const id = productInfo.id;
+    const title = productInfo.title;
+    const url = productInfo.url;
 
-  const body = title + ' is in stock at ' + url + '!';
-
+    body = title + ' is in stock at ' + url + '!';
+  }
   twilio.messages
     .create({
       'body': body,
