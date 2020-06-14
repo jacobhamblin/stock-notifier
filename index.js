@@ -13,7 +13,7 @@ let lastTime;
 
 const productNotification = function (productInfo) {
   const curTime = new Date().getTime();
-  if (lastTime && curTime - lastTime < 10 * 6 * 1000) return;
+  if (lastTime && curTime - lastTime < 10 * 60 * 1000) return;
   lastTime = curTime;
   let body = 'ping';
   if (productInfo) {
