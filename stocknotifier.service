@@ -1,0 +1,13 @@
+[Unit]
+Description=Rogue Notifier Script
+After=network-online.target
+[Service]
+ExecStart=/home/pi/.nvm/versions/node/v14.4.0/bin/node /home/pi/code/scripts/stock-notifier/index.js
+WorkingDirectory=/home/pi/code/scripts/stock-notifier
+StandardOutput=syslog
+StandardError=syslog
+Restart=always
+RestartSec=10
+User=pi
+[Install]
+WantedBy=multi-user.target
